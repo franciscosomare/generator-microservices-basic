@@ -39,7 +39,11 @@ module.exports = class extends BaseGenerator {
         const mainJavaTemplates = [
             'Application.java',
             'config/SwaggerConfig.java',
-            'constant/Constants.java'
+            'constant/Constants.java',
+            'exception/ExceptionResponse.java',
+            'exception/ModelNotFoundException.java',
+            'exception/ResponseExceptionHandler.java'
+            
         ];
         this.generateMainJavaCode(configOptions, mainJavaTemplates);
 

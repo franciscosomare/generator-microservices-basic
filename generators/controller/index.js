@@ -17,12 +17,12 @@ module.exports = class extends BaseGenerator {
 
         this.option('base-path', {
             type: String,
-            desc: "Base URL path for REST Controller"
+            desc: "URL Base path para el REST Controller"
         })
     }
 
     get initializing() {
-        this.logSuccess('Genearndo JPA entity, repository, service, model, exception y controller');
+        this.logSuccess('Generando entity, repository, service, model y controller');
         return {
             validateEntityName() {
                 const context = this.context;
@@ -49,9 +49,6 @@ module.exports = class extends BaseGenerator {
             {src: 'repository/Repository.java', dest: 'repository/'+configOptions.entityName+'Repository.java'},
             {src: 'service/Service.java', dest: 'service/'+configOptions.entityName+'Service.java'},
             {src: 'service/impl/ServiceImpl.java', dest: 'service/impl/'+configOptions.entityName+'ServiceImpl.java'},
-            {src: 'exception/ExceptionResponse.java', dest: 'exception/ExceptionResponse.java'},
-            {src: 'exception/ModelNotFoundException.java', dest: 'exception/ModelNotFoundException.java'},
-            {src: 'exception/ResponseExceptionHandler.java', dest: 'exception/ResponseExceptionHandler.java'},
             {src: 'model/Request.java', dest: 'model/'+configOptions.entityName+'Request.java'},
             {src: 'controller/Controller.java', dest: 'controller/'+configOptions.entityName+'Controller.java'},
         ];
