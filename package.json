@@ -1,0 +1,27 @@
+{
+  "name": "generator-microservices",
+  "version": "0.0.6",
+  "description": "A Yeoman generator for generating SpringBoot microservices",
+  "keywords": [
+    "yeoman-generator",
+    "java",
+    "spring",
+    "spring-boot",
+    "microservice"
+  ],
+  "files": [
+    "generators"
+  ],
+  "main": "index.js",
+  "devDependencies": {
+    "chai": "4.2.0",
+    "fs-extra": "7.0.1",
+    "mocha": "6.1.4",
+    "sinon": "7.2.5",
+    "yeoman-assert": "3.1.1",
+    "yeoman-test": "1.9.1"
+  },
+  "dependencies": {
+    "yeoman-generator": "^4.9.0"
+  }
+}
