@@ -16,7 +16,7 @@ function prompting() {
                     ? true
                     : 'Nombre de aplicacion invalido',
             message: 'Cual es el nombre de la aplicacion?',
-            default: 'myservice'
+            default: 'mi_servicio'
         },
         {
             type: 'string',
@@ -26,7 +26,31 @@ function prompting() {
                     ? true
                     : 'Nombre de package invalido',
             message: 'Cual es el su package name?',
-            default: 'com.mycompany.myservice'
+            default: 'pe.financieraoh'
+        },
+        {
+            type: 'list',
+            name: 'proyectoTipo',
+            message: 'Que tipo de Proyecto desea realizar?',
+            choices: [
+                {
+                    value: 'core',
+                    name: 'Core'
+                },
+                {
+                    value: 'gateway',
+                    name: 'Gateway'
+                },
+                {
+                    value: 'rules',
+                    name: 'Rules'
+                },
+                {
+                    value: 'business',
+                    name: 'Business'
+                }
+            ],
+            default: 'core'
         },
         {
             type: 'confirm',

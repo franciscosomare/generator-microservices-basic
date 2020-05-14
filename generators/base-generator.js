@@ -118,41 +118,46 @@ module.exports = class extends Generator {
 
     generateMainJavaCode(configOptions, templates) {
         const mainJavaRootDir = 'src/main/java/';
-        this._generateCode(configOptions, templates, 'app/', mainJavaRootDir, configOptions.packageFolder);
+        this._generateCode(configOptions, templates, 'app/', mainJavaRootDir, configOptions.packageFolder, configOptions.proyectoTipo);
     }
     
     generateMainResCode(configOptions, templates) {
         const mainResRootDir = 'src/main/resources/';
-        this._generateCode(configOptions, templates, 'app/', mainResRootDir,'');
+        this._generateCode(configOptions, templates, 'app/', mainResRootDir,'', configOptions.proyectoTipo);
     }
 
     generateTestJavaCode(configOptions, templates) {
         const testJavaRootDir = 'src/test/java/';
-        this._generateCode(configOptions, templates, 'app/', testJavaRootDir, configOptions.packageFolder);
+        this._generateCode(configOptions, templates, 'app/', testJavaRootDir, configOptions.packageFolder, configOptions.proyectoTipo);
     }
 
     generateTestResCode(configOptions, templates) {
         const testResRootDir = 'src/test/resources/';
-        this._generateCode(configOptions, templates, 'app/', testResRootDir,'');
+        this._generateCode(configOptions, templates, 'app/', testResRootDir,'', configOptions.proyectoTipo);
     }
 
-    generateFiles(configOptions, templates, srcRoot, baseFolder) {
-        this._generateCode(configOptions, templates, srcRoot, baseFolder, '');
+    generateFiles(configOptions, templates, srcRoot, baseFolder, proyectoTipo) {
+        this._generateCode(configOptions, templates, srcRoot, baseFolder, '', configOptions.proyectoTipo);
     }
 
-    _generateCode(configOptions, templates, srcRoot, baseFolder, packageFolder) {
+    _generateCode(configOptions, templates, srcRoot, baseFolder, packageFolder, proyectoTipo) {
         templates.forEach(tmpl => {
             if (_.isString(tmpl)) {
                 this.fs.copyTpl(
-                    this.templatePath(srcRoot + baseFolder + tmpl),
-                    this.destinationPath(baseFolder + packageFolder + '/' + tmpl),
-                    configOptions
+                    this.templatePath(srcRoot + baseFolder +  '/' +  proyectoTipo +  '/' + tmpl),
+                    this.destinationPath(baseFolder + packageFolder + '/' +proyectoTipo + '/' + tmpl),
+                    configOptions,
+                    this.templatePath(srcRoot + baseFolder + proyectoTipo +  '/' + tmpl),
+                    this.destinationPath(baseFolder + packageFolder + '/' +proyectoTipo + '/' + tmpl)
                 );
             } else {
                 this.fs.copyTpl(
-                    this.templatePath(srcRoot + baseFolder + tmpl.src),
-                    this.destinationPath(baseFolder + packageFolder + '/' + tmpl.dest),
-                    configOptions
+                    this.templatePath(srcRoot + baseFolder + '/' +  proyectoTipo +  '/' + tmpl),
+                    this.destinationPath(baseFolder + packageFolder + '/' +proyectoTipo + '/' + tmpl),
+                    configOptions,
+
+                    this.templatePath(srcRoot + baseFolder + proyectoTipo +  '/' + tmpl),
+                    this.destinationPath(baseFolder + packageFolder + '/' +proyectoTipo + '/' + tmpl)
                 );
             }
         });
