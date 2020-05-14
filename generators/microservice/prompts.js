@@ -46,9 +46,9 @@ function prompting() {
                     name: 'Rules'
                 },
                 {
-                    value: 'business',
-                    name: 'Business'
-                }
+                    value: 'bss',
+                    name: 'Bss'
+                }                
             ],
             default: 'core'
         },
@@ -100,6 +100,7 @@ function prompting() {
     this.prompt(prompts).then(answers => {
         Object.assign(this.configOptions, answers);
         
+        // Definicion de prefijo y sigla de microservicio
         var proyecto, sigla; 
         if(this.configOptions.proyectoTipo === 'core') {
             proyecto = 'co';
@@ -107,11 +108,11 @@ function prompting() {
         } else if(this.configOptions.proyectoTipo === 'gateway') {
             proyecto = 'gw';
             sigla = 'g'
-        } else if(this.configOptions.proyectoTipo === 'business') {
+        } else if(this.configOptions.proyectoTipo === 'bss') {
             proyecto = 'bs';
             sigla = 'b'
         } else if(this.configOptions.proyectoTipo === 'rules') {
-            proyecto = 'rl';
+            proyecto = 'ru';
             sigla = 'r'
         }
 
