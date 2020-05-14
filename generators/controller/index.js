@@ -53,6 +53,7 @@ module.exports = class extends BaseGenerator {
             {src: 'exception/ModelNotFoundException.java', dest: 'exception/ModelNotFoundException.java'},
             {src: 'exception/ResponseExceptionHandler.java', dest: 'exception/ResponseExceptionHandler.java'},
             {src: 'model/Request.java', dest: 'model/'+configOptions.entityName+'Request.java'},
+            {src: 'model/Response.java', dest: 'model/'+configOptions.entityName+'Response.java'},
             {src: 'controller/Controller.java', dest: 'controller/'+configOptions.entityName+'Controller.java'},
         ];
         this.generateMainJavaCode(configOptions, mainJavaTemplates);
