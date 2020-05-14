@@ -141,20 +141,18 @@ module.exports = class extends Generator {
     }
 
     _generateCode(configOptions, templates, srcRoot, baseFolder, packageFolder) {
-        
-      
-        templates.forEach(tmpl => {
+            templates.forEach(tmpl => {
             if (_.isString(tmpl)) {
                 this.fs.copyTpl(
-                    this.templatePath(srcRoot + baseFolder +  '/' + tmpl ),
-                    this.destinationPath(baseFolder + packageFolder + '/' + tmpl ),
-                    configOptions,              
+                    this.templatePath(srcRoot + baseFolder +  '/' + tmpl),
+                    this.destinationPath(baseFolder + packageFolder + '/' + tmpl),
+                    configOptions              
                 );
             } else {
                 this.fs.copyTpl(
-                    this.templatePath(srcRoot + baseFolder  +  '/' +  tmpl.src),
+                    this.templatePath(srcRoot + baseFolder  +  '/' + tmpl.src),
                     this.destinationPath(baseFolder + packageFolder + '/'  + tmpl.dest),
-                    configOptions,
+                    configOptions
                 );
             }
         });
