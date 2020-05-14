@@ -1,10 +1,8 @@
-
 module.exports = {
     prompting
 };
 
 function prompting() {
-
     const done = this.async();
 
     const prompts = [
@@ -16,7 +14,7 @@ function prompting() {
                     ? true
                     : 'Nombre de aplicacion invalido',
             message: 'Cual es el nombre de la aplicacion?',
-            default: 'myservice'
+            default: 'mi_servicio'
         },
         {
             type: 'string',
@@ -26,7 +24,31 @@ function prompting() {
                     ? true
                     : 'Nombre de package invalido',
             message: 'Cual es el su package name?',
-            default: 'com.mycompany.myservice'
+            default: 'pe.financieraoh'
+        },
+        {
+            type: 'list',
+            name: 'proyectoTipo',
+            message: 'Que tipo de Proyecto desea realizar?',
+            choices: [
+                {
+                    value: 'core',
+                    name: 'Core'
+                },
+                {
+                    value: 'gateway',
+                    name: 'Gateway'
+                },
+                {
+                    value: 'rules',
+                    name: 'Rules'
+                },
+                {
+                    value: 'bss',
+                    name: 'Bss'
+                }                
+            ],
+            default: 'core'
         },
         {
             type: 'confirm',
@@ -75,6 +97,37 @@ function prompting() {
 
     this.prompt(prompts).then(answers => {
         Object.assign(this.configOptions, answers);
+        
+        var proyecto, sigla; 
+        switch (this.configOptions.proyectoTipo) {
+            case 'core':
+                proyecto = 'co';
+                sigla = 'c';
+                break;            
+            case 'rules':
+                proyecto = 'ru';
+                sigla = 'r';
+                break;
+            case 'bss':
+                proyecto = 'bs';
+                sigla = 'b';
+                break;
+            case 'gateway':
+                proyecto = 'gw';
+                sigla = 'g';
+                break;
+            default:
+                proyecto = 'co';
+                sigla = 'c';
+                break;
+          }
+
+        this.configOptions.packageName = this.configOptions.packageName +'.' 
+                                        + this.configOptions.proyectoTipo  +'.'
+                                        + proyecto + this.configOptions.appName;
+        
+        this.configOptions.appName = 'ms' + sigla + '-' + this.configOptions.appName;
+        
         this.configOptions.packageFolder = this.configOptions.packageName.replace(/\./g, '/');
         if(this.configOptions.sql === false) {
             this.configOptions.databaseType = 'none';

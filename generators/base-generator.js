@@ -144,14 +144,14 @@ module.exports = class extends Generator {
         templates.forEach(tmpl => {
             if (_.isString(tmpl)) {
                 this.fs.copyTpl(
-                    this.templatePath(srcRoot + baseFolder + tmpl),
+                    this.templatePath(srcRoot + baseFolder +  '/' + tmpl),
                     this.destinationPath(baseFolder + packageFolder + '/' + tmpl),
                     configOptions
                 );
             } else {
                 this.fs.copyTpl(
-                    this.templatePath(srcRoot + baseFolder + tmpl.src),
-                    this.destinationPath(baseFolder + packageFolder + '/' + tmpl.dest),
+                    this.templatePath(srcRoot + baseFolder  +  '/' + tmpl.src),
+                    this.destinationPath(baseFolder + packageFolder + '/'  + tmpl.dest),
                     configOptions
                 );
             }
