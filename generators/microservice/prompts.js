@@ -3,8 +3,6 @@ module.exports = {
 };
 
 function prompting() {
-    const log = console.log;
-
     const done = this.async();
 
     const prompts = [
@@ -100,7 +98,6 @@ function prompting() {
     this.prompt(prompts).then(answers => {
         Object.assign(this.configOptions, answers);
         
-        // Definicion de prefijo y sigla de microservicio
         var proyecto, sigla; 
         switch (this.configOptions.proyectoTipo) {
             case 'core':
@@ -125,17 +122,12 @@ function prompting() {
                 break;
           }
 
-        
-
-        //Definicion del Paquete
         this.configOptions.packageName = this.configOptions.packageName +'.' 
                                         + this.configOptions.proyectoTipo  +'.'
                                         + proyecto + this.configOptions.appName;
         
-                                        //Definicion del nombre de la Aplicacion
         this.configOptions.appName = 'ms' + sigla + '-' + this.configOptions.appName;
         
-        //Definicion del Folder
         this.configOptions.packageFolder = this.configOptions.packageName.replace(/\./g, '/');
         if(this.configOptions.sql === false) {
             this.configOptions.databaseType = 'none';
