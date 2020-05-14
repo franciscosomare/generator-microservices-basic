@@ -42,6 +42,14 @@ module.exports = class extends Generator {
         }
     }
 
+    generateDockerConfig(configOptions) {
+        this.fs.copyTpl(
+            this.templatePath('app/Dockerfile'),
+            this.destinationPath('Dockerfile'),
+            configOptions
+        );
+    }
+
     _generateMavenConfig(configOptions) {
         this.copyMavenWrapper(configOptions);
         this.generateMavenPOMXml(configOptions);

@@ -27,11 +27,24 @@ module.exports = class extends BaseGenerator {
 
     writing() {
         this.generateBuildToolConfig(this.configOptions);
+        this.generateDockerConfig(this.configOptions);
+        this._generateDockerComposeFiles(this.configOptions);
         this._generateAppCode(this.configOptions);
     }
 
     end() {
         this.printGenerationSummary(this.configOptions);
+    }
+
+    _generateDockerComposeFiles(configOptions) {
+        this._generateAppDockerComposeFile(configOptions);
+    }
+
+    _generateAppDockerComposeFile(configOptions) {
+        const resTemplates = [
+            'docker-compose.yml',
+        ];
+        this.generateFiles(configOptions, resTemplates, 'app/','docker/');
     }
 
     _generateAppCode(configOptions) {
@@ -55,5 +68,7 @@ module.exports = class extends BaseGenerator {
             'ApplicationTests.java'
         ];
         this.generateTestJavaCode(configOptions, testJavaTemplates);
+
+        
     }
 };
