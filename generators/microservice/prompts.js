@@ -1,9 +1,9 @@
-
 module.exports = {
     prompting
 };
 
 function prompting() {
+    const log = console.log;
 
     const done = this.async();
 
@@ -99,6 +99,31 @@ function prompting() {
 
     this.prompt(prompts).then(answers => {
         Object.assign(this.configOptions, answers);
+        
+        var proyecto, sigla; 
+        if(this.configOptions.proyectoTipo === 'core') {
+            proyecto = 'co';
+            sigla = 'c'
+        } else if(this.configOptions.proyectoTipo === 'gateway') {
+            proyecto = 'gw';
+            sigla = 'g'
+        } else if(this.configOptions.proyectoTipo === 'business') {
+            proyecto = 'bs';
+            sigla = 'b'
+        } else if(this.configOptions.proyectoTipo === 'rules') {
+            proyecto = 'rl';
+            sigla = 'r'
+        }
+
+        //Definicion del Paquete
+        this.configOptions.packageName = this.configOptions.packageName +'.' 
+                                        + this.configOptions.proyectoTipo  +'.'
+                                        + proyecto + this.configOptions.appName;
+        
+                                        //Definicion del nombre de la Aplicacion
+        this.configOptions.appName = 'ms' + sigla + '-' + this.configOptions.appName;
+        
+        //Definicion del Folder
         this.configOptions.packageFolder = this.configOptions.packageName.replace(/\./g, '/');
         if(this.configOptions.sql === false) {
             this.configOptions.databaseType = 'none';
