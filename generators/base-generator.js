@@ -144,20 +144,15 @@ module.exports = class extends Generator {
         templates.forEach(tmpl => {
             if (_.isString(tmpl)) {
                 this.fs.copyTpl(
-                    this.templatePath(srcRoot + baseFolder +  '/' +  proyectoTipo +  '/' + tmpl),
+                    this.templatePath(srcRoot + baseFolder +  proyectoTipo +  '/' + tmpl),
                     this.destinationPath(baseFolder + packageFolder + '/' +proyectoTipo + '/' + tmpl),
-                    configOptions,
-                    this.templatePath(srcRoot + baseFolder + proyectoTipo +  '/' + tmpl),
-                    this.destinationPath(baseFolder + packageFolder + '/' +proyectoTipo + '/' + tmpl)
+                    configOptions,              
                 );
             } else {
                 this.fs.copyTpl(
-                    this.templatePath(srcRoot + baseFolder + '/' +  proyectoTipo +  '/' + tmpl),
-                    this.destinationPath(baseFolder + packageFolder + '/' +proyectoTipo + '/' + tmpl),
+                    this.templatePath(srcRoot + baseFolder + proyectoTipo  +  '/' +  tmpl.src),
+                    this.destinationPath(baseFolder + packageFolder + '/' + tmpl.dest),
                     configOptions,
-
-                    this.templatePath(srcRoot + baseFolder + proyectoTipo +  '/' + tmpl),
-                    this.destinationPath(baseFolder + packageFolder + '/' +proyectoTipo + '/' + tmpl)
                 );
             }
         });
