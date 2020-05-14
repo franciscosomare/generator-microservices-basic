@@ -102,19 +102,30 @@ function prompting() {
         
         // Definicion de prefijo y sigla de microservicio
         var proyecto, sigla; 
-        if(this.configOptions.proyectoTipo === 'core') {
-            proyecto = 'co';
-            sigla = 'c'
-        } else if(this.configOptions.proyectoTipo === 'gateway') {
-            proyecto = 'gw';
-            sigla = 'g'
-        } else if(this.configOptions.proyectoTipo === 'bss') {
-            proyecto = 'bs';
-            sigla = 'b'
-        } else if(this.configOptions.proyectoTipo === 'rules') {
-            proyecto = 'ru';
-            sigla = 'r'
-        }
+        switch (this.configOptions.proyectoTipo) {
+            case 'core':
+                proyecto = 'co';
+                sigla = 'c';
+                break;            
+            case 'rules':
+                proyecto = 'ru';
+                sigla = 'r';
+                break;
+            case 'bss':
+                proyecto = 'bs';
+                sigla = 'b';
+                break;
+            case 'gateway':
+                proyecto = 'gw';
+                sigla = 'g';
+                break;
+            default:
+                proyecto = 'co';
+                sigla = 'c';
+                break;
+          }
+
+        
 
         //Definicion del Paquete
         this.configOptions.packageName = this.configOptions.packageName +'.' 
