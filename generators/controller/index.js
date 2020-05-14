@@ -50,6 +50,7 @@ module.exports = class extends BaseGenerator {
             {src: 'service/Service.java', dest: 'service/'+configOptions.entityName+'Service.java'},
             {src: 'service/impl/ServiceImpl.java', dest: 'service/impl/'+configOptions.entityName+'ServiceImpl.java'},
             {src: 'model/Request.java', dest: 'model/'+configOptions.entityName+'Request.java'},
+            {src: 'model/Response.java', dest: 'model/'+configOptions.entityName+'Response.java'},
             {src: 'controller/Controller.java', dest: 'controller/'+configOptions.entityName+'Controller.java'},
         ];
         this.generateMainJavaCode(configOptions, mainJavaTemplates);

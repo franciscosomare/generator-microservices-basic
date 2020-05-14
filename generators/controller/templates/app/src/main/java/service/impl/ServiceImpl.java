@@ -2,8 +2,11 @@ package <%= packageName %>.service.impl;
 
 import <%= packageName %>.entity.<%= entityName %>;
 import <%= packageName %>.repository.<%= entityName %>Repository;
+import <%= packageName %>.model.<%= entityName %>Request;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.modelmapper.ModelMapper;
 import org.springframework.transaction.annotation.Transactional;
 import <%= packageName %>.service.<%= entityName %>Service;
 
@@ -29,7 +32,15 @@ public class <%= entityName %>ServiceImpl implements <%= entityName %>Service {
         return <%= entityVarName %>Repository.findById(id);
     }
 
-    public <%= entityName %> save<%= entityName %>(<%= entityName %> <%= entityVarName %>) {
+    public <%= entityName %> save<%= entityName %>(<%= entityName %>Request <%= entityVarName %>Request) {
+        ModelMapper modelMapper = new ModelMapper();
+        <%= entityName %> <%= entityVarName %> = modelMapper.map(<%= entityVarName %>Request, <%= entityName %>.class);
+        return <%= entityVarName %>Repository.save(<%= entityVarName %>);
+    }
+
+    public <%= entityName %> update<%= entityName %>(<%= entityName %>Request <%= entityVarName %>Request) {
+        ModelMapper modelMapper = new ModelMapper();
+        <%= entityName %> <%= entityVarName %> = modelMapper.map(<%= entityVarName %>Request, <%= entityName %>.class);
         return <%= entityVarName %>Repository.save(<%= entityVarName %>);
     }
 
